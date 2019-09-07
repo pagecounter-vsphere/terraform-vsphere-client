@@ -25,15 +25,13 @@ resource "vsphere_virtual_machine" "client-vm" {
         domain    = "${var.sub}.${var.domain}"
       }
 
-      network_interface {
-      }
     }
   }
 
   # https://www.terraform.io/docs/provisioners/connection.html#example-usage
   # https://www.terraform.io/docs/provisioners/connection.html#example-usage
   connection {
-    host     = self.default_ip_address
+    host     = self.guest_ip_addresses[0]
     type     = "ssh"
     user     = "ubuntu"
     password = "ubuntu"
