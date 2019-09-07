@@ -29,7 +29,6 @@ resource "vsphere_virtual_machine" "client-vm" {
   }
 
   # https://www.terraform.io/docs/provisioners/connection.html#example-usage
-  # https://www.terraform.io/docs/provisioners/connection.html#example-usage
   connection {
     host     = self.guest_ip_addresses[0]
     type     = "ssh"
@@ -49,7 +48,6 @@ resource "vsphere_virtual_machine" "client-vm" {
     network_id   = var.network_id
   }
 
-  # https://www.terraform.io/docs/provisioners/remote-exec.html#example-usage
   # https://www.terraform.io/docs/provisioners/remote-exec.html#example-usage
   provisioner "remote-exec" {
     inline = [
