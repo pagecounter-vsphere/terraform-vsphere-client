@@ -4,10 +4,9 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "client-vm" {
-  count  = var.client_count
-  name   = "${format("client%02d", count.index + 1)}-${var.dc}"
-  folder = var.folder
-
+  count            = var.client_count
+  name             = "${format("client%02d", count.index + 1)}-${var.dc}"
+  folder           = var.folder
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
   num_cpus         = 1
@@ -18,19 +17,17 @@ resource "vsphere_virtual_machine" "client-vm" {
   clone {
     template_uuid = data.vsphere_virtual_machine.template.id
     linked_clone  = true
-
     customize {
       linux_options {
         host_name = "${format("client%02d", count.index + 1)}-${var.dc}"
         domain    = "${var.sub}.${var.domain}"
       }
-
     }
   }
 
   # https://www.terraform.io/docs/provisioners/connection.html#example-usage
   connection {
-    host     = self.guest_ip_addresses[0]
+    host     = self.default_ip_address
     type     = "ssh"
     user     = "ubuntu"
     password = "ubuntu"
