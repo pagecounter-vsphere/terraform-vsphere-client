@@ -57,6 +57,7 @@ resource "vsphere_virtual_machine" "client-vm" {
       "export LAN_JOIN='${var.consul_lan_join}'",
       "curl -sLo /tmp/consul.sh https://raw.githubusercontent.com/kikitux/curl-bash/master/consul-client/consul.sh",
       "sudo -E bash /tmp/consul.sh",
+      "export REGION='${var.nomad_region}'",
       "export LAN_JOIN='${var.nomad_lan_join}'",
       "curl -sLo /tmp/nomad.sh https://raw.githubusercontent.com/kikitux/curl-bash/master/nomad-client/nomad.sh",
       "sudo -E bash /tmp/nomad.sh",

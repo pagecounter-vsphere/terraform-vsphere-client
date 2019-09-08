@@ -28,6 +28,10 @@ variable "nomad_lan_join" {
   default = ""
 }
 
+variable "nomad_region" {
+  default = "global"
+}
+
 variable "network_id" {
 }
 
