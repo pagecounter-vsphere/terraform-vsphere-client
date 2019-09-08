@@ -44,3 +44,5 @@ variable "template" {
 variable "vsphere_datacenter_id" {
 }
 
+variable "github_user" {
+}
