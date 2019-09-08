@@ -67,10 +67,17 @@ resource "vsphere_virtual_machine" "client-vm" {
 }
 
 output "guest_ip_address" {
-  value = vsphere_virtual_machine.client-vm.*.guest_ip_addresses
+  value = vsphere_virtual_machine.client-vm.0.guest_ip_addresses
 }
 
 output "name" {
-  value = vsphere_virtual_machine.client-vm.*.name
+  value = vsphere_virtual_machine.client-vm.0.name
 }
 
+output "guest_ip_addresses" {
+  value = vsphere_virtual_machine.client-vm.*.guest_ip_addresses
+}
+
+output "names" {
+  value = vsphere_virtual_machine.client-vm.*.name
+}
