@@ -22,6 +22,8 @@ resource "vsphere_virtual_machine" "client-vm" {
         host_name = "${format("client%02d", count.index + 1)}-${var.dc}"
         domain    = "${var.sub}.${var.domain}"
       }
+      network_interface {
+      }
     }
   }
 
